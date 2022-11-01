@@ -10,6 +10,7 @@ This repository contains various configuration artefacts for a personal Amazon W
   - AWS : https://aws.amazon.com/
   - Terraform : https://www.terraform.io/
   - Packer : https://www.packer.io/
+  - Fedora : https://getfedora.org/
   
 ### The project
 
@@ -32,13 +33,15 @@ The objective of the project is to host a Wordpress-based web solution for a com
 
 *< insert infrastructure schema >*
 
-**Infrastructure-as-Code**
+**Infrastructure-as-Code (Terraform)**
 
 Regarding the deployment, we have chosen to use Terraform to provision the infrastructure. The Terraform manifests are hosted on this GitHub repository and the `tfstate` will be stored on an internal PostgreSQL database outside of AWS.
 
-**OS provisionning**
+**OS provisionning (Linux)**
 
 Since we will use EC2 virtual machines, we will need to configure various system components, the web service by itself, but also the satellite elements around it (i.e application metrics and logs...). The deployment of these EC2 instances must be done in the most industrial way possible, some options are to be evaluated:
-  - Use of Hashicorp Packer to build golden AMIs and store them as ***Launch Templates*** for **ASG** (prefered)
+  - Use of Hashicorp Packer to build golden AMIs and store them as ***Launch Templates*** for **ASG**
   - Use of Cloud-Init to provision instances on first boot
   - Use of configuration management tools such as Ansible (in *pull-mode*)
+  
+Regarding the EC2 OS choice, we will use **Fedora Linux** with SELinux in enforced mode.
