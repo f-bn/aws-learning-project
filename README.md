@@ -16,7 +16,7 @@ The objective of the project is to host a Wordpress-based web solution for a com
   - **EC2** to host the Wordpress application
   - **VPC** to manage public and private networking
   - **Route53** to manage DNS
-  - **RDS** for the database backend (we will use PostgreSQL)
+  - **RDS** for the database backend (we will use PostgreSQL :heart:)
   - **S3** to store the various company assets (videos, pictures...)
   - **ELB** as front load-balancer to distribute load on the Wordpress machines
   - **IAM** to manage security for the resources and human accesses
