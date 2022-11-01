@@ -44,4 +44,4 @@ Since we will use EC2 virtual machines, we will need to configure various system
   - Use of Cloud-Init to provision instances on first boot
   - Use of configuration management tools such as Ansible (in *pull-mode*)
   
-Regarding the EC2 OS choice, we will use **Fedora Linux** with SELinux in enforced mode.
+Regarding the EC2 operating system, we will use **Fedora Linux** with SELinux in enforced mode.
