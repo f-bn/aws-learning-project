@@ -9,16 +9,19 @@ This repository contains various configuration artefacts for a personal Amazon W
 **References**
   - AWS : https://aws.amazon.com/
   - Terraform : https://www.terraform.io/
+  - Packer : https://www.packer.io/
   
 ### The project
 
-The objective of the project is to host a Wordpress-based web solution for a company, the *FBN Corp*, at a public cloud provider. For this project, we have chosen to use Amazon Web Services. We need to use, at least, the following AWS services to meet the company's needs :
+**AWS**
+
+The objective of the project is to host a Wordpress-based web solution for a company, the *FBN Corp*, on a public cloud platform. For this project, we have chosen to use ***Amazon Web Services***. We need to use, at least, the following AWS services to meet the company's needs :
   - **EC2** to host the Wordpress application
   - **VPC** to manage public and private networking
   - **Route53** to manage DNS
   - **RDS** for the database backend (we will use PostgreSQL :heart:)
   - **S3** to store the various company assets (videos, pictures...)
-  - **ELB** as front load-balancer to distribute load on the Wordpress machines
+  - **ELB** as a front load-balancer to distribute load on the EC2 Wordpress machines
   - **IAM** to manage security for the resources and human accesses
   - **CloudWatch** for the monitoring (metrics, alerting)
   - **ASG** (in tandem with CloudWatch) to manage auto-scaling of the EC2 resources
@@ -29,4 +32,13 @@ The objective of the project is to host a Wordpress-based web solution for a com
 
 *< insert infrastructure schema >*
 
+**Infrastructure-as-Code**
+
 Regarding the deployment, we have chosen to use Terraform to provision the infrastructure. The Terraform manifests are hosted on this GitHub repository and the `tfstate` will be stored on an internal PostgreSQL database outside of AWS.
+
+**OS provisionning**
+
+Since we will use EC2 virtual machines, we will need to configure various system components, the web service by itself, but also the satellite elements around the latter (i.e application metrics and logs...). The deployment of these EC2 instances must be done in the most industrial way possible, some options are to be evaluated:
+  - Use of Hashicorp Packer to build golden AMIs and store them as ***Launch Templates*** for **ASG** (prefered)
+  - Use of Cloud-Init to provision instances on first boot
+  - Use of configuration management tools such as Ansible (in *pull-mode*)
