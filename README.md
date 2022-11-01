@@ -38,7 +38,7 @@ Regarding the deployment, we have chosen to use Terraform to provision the infra
 
 **OS provisionning**
 
-Since we will use EC2 virtual machines, we will need to configure various system components, the web service by itself, but also the satellite elements around the latter (i.e application metrics and logs...). The deployment of these EC2 instances must be done in the most industrial way possible, some options are to be evaluated:
+Since we will use EC2 virtual machines, we will need to configure various system components, the web service by itself, but also the satellite elements around it (i.e application metrics and logs...). The deployment of these EC2 instances must be done in the most industrial way possible, some options are to be evaluated:
   - Use of Hashicorp Packer to build golden AMIs and store them as ***Launch Templates*** for **ASG** (prefered)
   - Use of Cloud-Init to provision instances on first boot
   - Use of configuration management tools such as Ansible (in *pull-mode*)
